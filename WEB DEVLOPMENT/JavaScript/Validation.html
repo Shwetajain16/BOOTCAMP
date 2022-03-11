@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Event </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+        <script type="text/javascript">
+            var $FullNameRegEx = /^([a-zA-Z]{2,20})$/;
+			var $ConNoRegEx = /^([0-9]{10})$/;
+			var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
+            var $Message = /^([a-zA-Z]{10,60})$/;
+
+            var NameFlag=false,ContactNoFlag=false,EmailID=false;Msg=false;
+
+$(document).ready(function(){
+    $("#Name").blur(function(){
+        NameFlag=false;
+        $("#NameValidation").empty();
+        if($(this).val()=="") 
+        { 
+            $("#NameValidation").html("(*) First name required..!!");
+        }
+        else{
+            if(!$(this).val().match($FullNameRegEx))
+             
+            {
+                $("#NameValidation").html("(*) Invalid first name..!!");
+            }
+            else{
+                NameFlag=true;
+            }
+        }
+    });
+    $("#ContactNo").blur(function(){
+					ContactNoFlag=false;
+					$("#ContactNoValidation").empty();
+					if($(this).val()=="") 
+					{
+						$("#ContactNoValidation").html("(*) Contact no. required.....!!");
+					}
+					else{
+						if(!$(this).val().match($ConNoRegEx)) 
+						{
+							$("#ContactNoValidation").html("(*) Invalid contact no.....!!");
+						}
+						else{
+							ContactNoFlag=true;
+						}
+					}
+				});
+                
+                $("#EmailID").blur(function(){
+					EmailIDFlag=false;
+					$("#EmailIDValidation").empty();
+					if($(this).val()=="") 
+					{
+						$("#EmailIDValidation").html("(*) Email Id  required..!!");
+					}
+					else{
+						if($(this).val().length>3000) 
+						{
+							$("#EmailIDValidation").html("(*) Invalid Email ID .!!");
+						}
+						else{
+							EmailIDFlag=true;
+						}
+					}
+				});
+                $("#Msg").blur(function(){
+					MsgFlag=false;
+					$("#MsgValidation").empty();
+					if($(this).val()=="") 
+					{
+						$("#MsgValidation").html("(*) Contact message required..!!");
+					}
+					else{
+						if($(this).val().length>3000) 
+						{
+							$("#MsgValidation").html("(*) Invalid contact message..!!");
+						}
+						else{
+							MsgFlag=true;
+						}
+					}
+				});
+                $("#btn").click(function(){
+					NameFlag=false;
+					$("#NameValidation").empty();
+					if($("#Name").val()=="") 
+					{
+						$("#NameValidation").html("(*) First name required..!!");
+					}
+					else{
+						if(!$("#Name").val().match($FullNameRegEx)) 
+						{
+							$("#NameValidation").html("(*) Invalid first name..!!");
+						}
+						else{
+							NameFlag=true;
+						}
+					}
+
+
+                    ContactNoFlag=false;
+					$("#ContactNoValidation").empty();
+					if($("#ContactNo").val()=="") 
+					{
+						$("#ContactNoValidation").html("(*) First name required..!!");
+					}
+					else{
+						if(!$("#ContactNo").val().match($ConNoRegEx)) 
+						{
+							$("#ContactNoValidation").html("(*) Invalid first name..!!");
+						}
+						else{
+							ContactNoFlag=true;
+						}
+					}
+				});
+      
+});
+        </script>
+        <style type="text/css">
+			small{color:red;}
+		</style>
+
+</head>
+<body>
+    <input type="text" id="Name" autofocus placeholder="Enter Name Here..." maxlength="20"/><br/>
+		<small id="NameValidation"></small>
+		<hr/>
+		<input type="text" id="ContactNo" placeholder="Enter Contact No Here..." maxlength="10"/><br/>
+		<small id="ContactNoValidation"></small>
+		<hr/>
+		<input type="text" id="EmailID" placeholder=" Enter the Email ID Here..." maxlength="10"/><br/>
+		<small id="EmailIDValidation"></small>
+        <hr/>
+		<textarea rows="5" id="Msg" placeholder="Enter Message Here....." maxlength="200"></textarea><br/>
+		<small id="MsgValidation"></small>	
+		<hr/>
+		<button id="Btn"> SUBMIT </button>
+</body>
+</html>
